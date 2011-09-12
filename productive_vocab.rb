@@ -36,15 +36,14 @@ end
 contents.downcase!
 
 
-print 'Loading text...'
-#puts contents
-print 'done' + "\n"
+#print 'Loading text...'
+#print 'done' + "\n"
 
-print 'Splitting words...'
+#print 'Splitting words...'
 # ? : ' " \ /
 words = contents.split(/[^A-Za-z']+/)
 #words = contents.split(/[^?.!;-]+/)
-print 'done' + "\n"
+#print 'done' + "\n"
 
 words.each do |word|
     next if word.length == 1 and word != 'a'
@@ -54,9 +53,11 @@ end
 
 wordsSeen = wordsSeen.sort { |a, b| b[1] <=> a[1] }
 
+print 'Total different words used: ' + wordsSeen.length.to_s + "\n"
+
 print 'Word counts:' + "\n"
 wordsSeen.each do |word, count|
     print word + ': ' + count.to_s + "\n"
 end
 
-print 'Total words used: ' + wordsSeen.length.to_s + "\n"
+
