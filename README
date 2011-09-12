@@ -1,0 +1,2 @@
+This program determines the productive vocabulary of an individual by analyzing a sample text. It counts the frequency of words within a body of text, adds them up, and states the overall quantity of different 
+words. 
