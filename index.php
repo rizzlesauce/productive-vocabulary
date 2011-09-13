@@ -4,7 +4,7 @@ $sampleText = '';
 $output = '';
 
 if (isset($_REQUEST['sampleText'])) {
-    $sampleText = $_REQUEST['sampleText'];
+    $sampleText = stripslashes($_REQUEST['sampleText']);
     if (strlen($sampleText) == 0) {
         $sampleSubmittedText = '<p id="sampleSubmittedText" style="color: red">Sample cannot be blank!</p>';
     } else {
