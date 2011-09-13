@@ -16,30 +16,8 @@ convertedContents = ''
 convertedContents = rawContents
 
 #print 'number of chars: ' + rawContents.length.to_s + "\n"
+
 # Convert special characters
-
-=begin
-for i in 0..rawContents.length - 1
-    char = rawContents[i]
-    converted = ''
-
-    if char == 147 or char == 148
-        converted = '"'
-    elsif char == 146 
-        converted = "'"
-    elsif char == 151
-        converted = '--'
-    elsif char == 133 
-        # not sure what this one is
-        converted = '...'
-    else
-        converted = char.chr
-    end
-    convertedContents += converted
-    #print converted
-end
-=end
-
 convertedContents.gsub!(/\x93/, '"')
 convertedContents.gsub!(/\x94/, '"')
 convertedContents.gsub!(/\x91/, "'")
@@ -57,27 +35,6 @@ exit
 =end
 
 contents = convertedContents
-
-=begin
-# deal with quotations
-numQuotations = 0
-startIndex = -1
-endIndex = 0
-contents = ''
-quoteSymbol = '"'
-while true
-    endIndex = rawContents.index(quoteSymbol, startIndex + 1)
-    if endIndex == nil
-        endIndex = rawContents.length
-    end
-    contents += rawContents[(startIndex + 1)..(endIndex - 1)] + ' '
-    startIndex = rawContents.index(quoteSymbol, endIndex + 1)
-    if startIndex == nil
-        break
-    end
-    #puts rawContents[endIndex..startIndex]
-end
-=end
 
 contents.downcase!
 #puts contents
