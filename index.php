@@ -5,18 +5,22 @@ $output = '';
 
 if (isset($_REQUEST['sampleText'])) {
     $sampleText = $_REQUEST['sampleText'];
-    $sampleSubmittedText = '<p style="color: green">Text sample submitted</p>';
-
-    $fileName = 'sample.txt';
-    $filePath = dirname(__FILE__) . "/sample-text/$fileName";
-    if (!file_put_contents($filePath, $sampleText)) {
-        $sampleSubmittedText = '<p>Error copying text to file!</p>';
+    if (strlen($sampleText) == 0) {
+        $sampleSubmittedText = '<p id="sampleSubmittedText" style="color: red">Sample cannot be blank!</p>';
     } else {
-        $cmd = "./productive_vocab.rb $filePath";
-        $output = shell_exec($cmd);
+        $sampleSubmittedText = '<p id="sampleSubmittedText" style="color: green">Text sample submitted</p>';
+
+        $fileName = 'sample.txt';
+        $filePath = dirname(__FILE__) . "/sample-text/$fileName";
+        if (!file_put_contents($filePath, $sampleText)) {
+            $sampleSubmittedText = '<p id="sampleSubmittedText" style="color: red;">Error copying text to file!</p>';
+        } else {
+            $cmd = "./productive_vocab.rb $filePath";
+            $output = shell_exec($cmd);
+        }
     }
 } else {
-    $sameplSubmittedText = '';
+    $sampleSubmittedText = '<p id="sampleSubmittedText"/>';
 }
 
 if (strlen($output) != 0) {
@@ -39,6 +43,10 @@ body {
     height: 400px;
 }
 
+#sampleSubmittedText {
+    height: 14px;
+}
+
 #resultsDiv {
     background-color: white;
     /*padding-left: 40px;*/
@@ -52,8 +60,8 @@ body {
     <center>
     <h1>Welcome to the Productive Vocabulary Test!</h1>
     $sampleSubmittedText
+    <h3>Enter sample text below</h3>
     <form action=\"\" method=\"POST\">
-        <p>Enter sample text below</p>
         <textarea id=\"sampleText\" name=\"sampleText\">$sampleText</textarea>
         <br/>
         <input type=\"submit\" value=\"Submit\"/>

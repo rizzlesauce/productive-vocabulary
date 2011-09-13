@@ -45,15 +45,17 @@ words = contents.split(/[^A-Za-z']+/)
 #words = contents.split(/[^?.!;-]+/)
 #print 'done' + "\n"
 
+wordCount = 0
 words.each do |word|
-    next if word.length == 1 and word != 'a'
+    next if word.length == 1 and word != 'a' and word != 'i'
     wordsSeen[word] = 0 if !wordsSeen[word]
     wordsSeen[word] += 1
+    wordCount += 1
 end
 
 wordsSeen = wordsSeen.sort { |a, b| b[1] <=> a[1] }
 
-print 'Total words: ' + words.length.to_s + "\n"
+print 'Total words: ' + wordCount.to_s + "\n"
 print 'Productive vocabulary size: ' + wordsSeen.length.to_s + "\n"
 
 print 'Individual word count:' + "\n"
