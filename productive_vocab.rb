@@ -53,9 +53,10 @@ end
 
 wordsSeen = wordsSeen.sort { |a, b| b[1] <=> a[1] }
 
-print 'Total different words used: ' + wordsSeen.length.to_s + "\n"
+print 'Total words: ' + words.length.to_s + "\n"
+print 'Productive vocabulary size: ' + wordsSeen.length.to_s + "\n"
 
-print 'Word counts:' + "\n"
+print 'Individual word count:' + "\n"
 wordsSeen.each do |word, count|
     print word + ': ' + count.to_s + "\n"
 end

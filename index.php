@@ -20,7 +20,7 @@ if (isset($_REQUEST['sampleText'])) {
 }
 
 if (strlen($output) != 0) {
-    $outputDiv = "<h3>Results:</h3><div style=\"background-color: white\"><pre>$output</pre></div>";
+    $outputDiv = "<h3>Results:</h3><div id=\"resultsDiv\"><pre>$output</pre></div>";
 } else {
     $outputDiv = '';
 }
@@ -39,18 +39,27 @@ body {
     height: 400px;
 }
 
+#resultsDiv {
+    background-color: white;
+    /*padding-left: 40px;*/
+    border: 1px solid black;
+    width: 400px;
+}
+
 </style>
 </head>
 <body>
+    <center>
     <h1>Welcome to the Productive Vocabulary Test!</h1>
     $sampleSubmittedText
-    <form action=\"\" method=\"GET\">
+    <form action=\"\" method=\"POST\">
         <p>Enter sample text below</p>
         <textarea id=\"sampleText\" name=\"sampleText\">$sampleText</textarea>
         <br/>
         <input type=\"submit\" value=\"Submit\"/>
     </form>
     $outputDiv
+    </center>
 </body>
 </html>
 
